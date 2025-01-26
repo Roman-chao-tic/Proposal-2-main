@@ -35,7 +35,7 @@
             border: 2px solid #c0392b;  /* Red border for the button */
             background-color: #e74c3c; /* Red background */
             color: #fff;  /* White text */
-            margin-top: 20px;  /* Add some space above the button */
+            margin-top: 40px;  /* Increased space between the text and button */
             border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 3D effect shadow */
             transition: all 0.2s ease-in-out;
@@ -97,10 +97,13 @@
         }
 
         function typeText(container, text, callback) {
+            // Create a new line to separate the previous text
+            const newLine = document.createElement('div');
+            container.appendChild(newLine);
             let i = 0;
             const interval = setInterval(() => {
                 if (i < text.length) {
-                    container.textContent += text[i];
+                    newLine.textContent += text[i];
                     i++;
                 } else {
                     clearInterval(interval);
@@ -129,3 +132,4 @@
     </script>
 </body>
 </html>
+
