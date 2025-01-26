@@ -13,26 +13,39 @@
             transition: background 1s ease;
         }
 
-        /* Make sure the typing container is visible and styled properly */
+        /* Position the typing container near the left-top corner */
         #typing-container {
-            display: block;
-            text-align: center;
+            position: absolute;
+            top: 50px; /* A little margin from the top */
+            left: 50px; /* A little margin from the left */
+            text-align: left; /* Align the text to the left */
             font-size: 24px;
             padding: 20px;
             color: #272E5C;  /* Change text color to #272E5C */
-            height: 200px;  /* Provide height for the container */
-            width: 100%;    /* Full width */
+            width: auto;    /* Set width to auto */
+            max-width: 90%; /* Ensure text doesn't overflow the screen */
             overflow: hidden; /* Prevent overflow */
         }
 
+        /* Style for the 'Nah' button */
         .no-btn {
-            padding: 10px 20px;
+            padding: 12px 24px;
             font-size: 18px;
             cursor: pointer;
-            border: 2px solid #333;
-            background-color: #fff;
-            margin-top: 10px;
+            border: 2px solid #c0392b;  /* Red border for the button */
+            background-color: #e74c3c; /* Red background */
+            color: #fff;  /* White text */
+            margin-top: 20px;  /* Add some space above the button */
             border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 3D effect shadow */
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Hover effect for the button */
+        .no-btn:hover {
+            background-color: #c0392b; /* Darker red on hover */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Enhance the 3D shadow */
+            transform: translateY(-2px); /* Lift the button up */
         }
 
         /* Rose animation */
