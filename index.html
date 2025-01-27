@@ -177,9 +177,13 @@
             const awwwButton = document.getElementById('awww-btn');
             awwwButton.style.display = 'block';
 
-            // Redirect on button click
+            // Add redirect and clicking animation to the button
             awwwButton.onclick = () => {
-                window.location.href = "https://roman-chao-tic.github.io/Proposal-3/";
+                awwwButton.style.transform = 'translate(4px, 4px)';
+                awwwButton.style.boxShadow = 'none';
+                setTimeout(() => {
+                    window.location.href = "https://roman-chao-tic.github.io/Proposal-3/";
+                }, 100);
             };
         }
     </script>
