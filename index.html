@@ -9,19 +9,19 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background: #fff; /* White background */
+            font-family: 'Press Start 2P', cursive;
+            background: #fff;
             overflow: hidden;
         }
 
-        /* Position the typing container near the left-top corner */
+        /* Typing container for the text */
         #typing-container {
             position: relative;
-            z-index: 3; /* Ensure text appears above the image */
+            z-index: 3;
             top: 50px;
             left: 50px;
             text-align: left;
-            font-size: 24px;
+            font-size: 1rem;
             padding: 20px;
             color: #272E5C;
             width: auto;
@@ -29,25 +29,44 @@
             overflow: hidden;
         }
 
-        /* Style for the 'Nah' button */
-        .no-btn {
-            padding: 12px 24px;
-            font-size: 18px;
+        /* Shared button styles */
+        button {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
             cursor: pointer;
-            border: 2px solid #c0392b;
-            background-color: #e74c3c;
             color: #fff;
-            margin-top: 40px;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            transition: all 0.2s ease-in-out;
+            background: linear-gradient(to bottom, #444, #222);
+            border: 4px solid #000;
+            box-shadow: 4px 4px 0 #000;
+            text-transform: uppercase;
+            text-shadow: 2px 2px #000;
+            transition: transform 0.1s ease;
         }
 
-        /* Hover effect for the button */
-        .no-btn:hover {
-            background-color: #c0392b;
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-            transform: translateY(-2px);
+        /* Button active effect */
+        button:active {
+            transform: translate(4px, 4px);
+            box-shadow: none;
+        }
+
+        /* 'Nah' button specific styles */
+        .no-btn {
+            background: linear-gradient(to bottom, #e74c3c, #c0392b);
+            border-color: #a93226;
+        }
+
+        /* 'Awww' button specific styles */
+        .awww-btn {
+            background: linear-gradient(to bottom, #4CAF50, #2E7D32);
+            border-color: #1B5E20;
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            display: none; /* Initially hidden */
         }
 
         /* Fool image container */
@@ -58,9 +77,9 @@
             width: 100%;
             height: 100%;
             background: url('Fool.jpg') no-repeat center center/contain;
-            opacity: 0; /* Initially hidden */
-            z-index: 2; /* Below the text */
-            transition: opacity 1s ease; /* Smooth fade-in */
+            opacity: 0;
+            z-index: 2;
+            transition: opacity 1s ease;
         }
 
         /* Rose animation (falling effect) */
@@ -70,7 +89,7 @@
             animation: fall 5s ease-in infinite;
             pointer-events: none;
             font-size: 20px;
-            z-index: 4; /* Roses appear above everything else */
+            z-index: 4;
         }
 
         @keyframes fall {
@@ -90,6 +109,9 @@
     <!-- Fool image (hidden initially) -->
     <div id="fool-image"></div>
 
+    <!-- 'Awww' button -->
+    <button class="awww-btn" id="awww-btn">Awww</button>
+
     <script>
         // Start the interaction immediately upon page load
         window.onload = () => {
@@ -107,9 +129,9 @@
             button.className = "no-btn";
             button.onclick = () => {
                 button.remove();
-                typeText(container, "Jantammm!!!!!! So f*cking incompetent😔", () => {
+                typeText(container, "Jantammm!!!!!! What a f*cking incompetent😔", () => {
                     setTimeout(() => {
-                        typeText(container, "Well, anyways ei ne phul from your fool🤭", showRoseAnimation);
+                        typeText(container, "Well, anyways ei ne phul from your fool", showRoseAnimation);
                     }, 1000);
                 });
             };
@@ -150,6 +172,15 @@
                     rose.remove();
                 });
             }
+
+            // Show the 'Awww' button after roses start falling
+            const awwwButton = document.getElementById('awww-btn');
+            awwwButton.style.display = 'block';
+
+            // Redirect on button click
+            awwwButton.onclick = () => {
+                window.location.href = "https://roman-chao-tic.github.io/Proposal-3/";
+            };
         }
     </script>
 </body>
