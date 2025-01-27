@@ -10,13 +10,14 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            transition: background 1s ease, filter 1s ease;
-            background: #fff; /* Default background color */
+            background: #fff; /* White background */
+            overflow: hidden;
         }
 
         /* Position the typing container near the left-top corner */
         #typing-container {
-            position: absolute;
+            position: relative;
+            z-index: 3; /* Ensure text appears above the image */
             top: 50px;
             left: 50px;
             text-align: left;
@@ -49,6 +50,19 @@
             transform: translateY(-2px);
         }
 
+        /* Fool image container */
+        #fool-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('Fool.jpg') no-repeat center center/contain;
+            opacity: 0; /* Initially hidden */
+            z-index: 2; /* Below the text */
+            transition: opacity 1s ease; /* Smooth fade-in */
+        }
+
         /* Rose animation (falling effect) */
         .rose {
             position: absolute;
@@ -56,6 +70,7 @@
             animation: fall 5s ease-in infinite;
             pointer-events: none;
             font-size: 20px;
+            z-index: 4; /* Roses appear above everything else */
         }
 
         @keyframes fall {
@@ -66,21 +81,14 @@
                 transform: translateY(110vh);
             }
         }
-
-        /* Ensure the background is visible */
-        body.fool-background {
-            background: url('Fool.jpg') no-repeat center center/cover;
-            filter: blur(2px); /* Slight blur to give depth */
-        }
-
-        /* Roses are larger to stand out */
-        .fool-background .rose {
-            font-size: 30px; /* Larger font size */
-        }
     </style>
 </head>
 <body>
+    <!-- Typing container for the text -->
     <div id="typing-container"></div>
+
+    <!-- Fool image (hidden initially) -->
+    <div id="fool-image"></div>
 
     <script>
         // Start the interaction immediately upon page load
@@ -124,8 +132,9 @@
         }
 
         function showRoseAnimation() {
-            // Change the background and apply the blur effect
-            document.body.classList.add('fool-background');
+            // Make the Fool.jpg image visible
+            const foolImage = document.getElementById('fool-image');
+            foolImage.style.opacity = 1; // Fade in the Fool.jpg image
 
             // Generate falling roses
             for (let i = 0; i < 50; i++) {
