@@ -89,20 +89,21 @@
         #rose-text {
             position: absolute;
             right: 50px;
-            bottom: 180px; /* Positioned higher above the rose */
+            bottom: 250px; /* Positioned higher above the rose */
             color: #272E5C;
             font-size: 1.2rem;
             text-align: center;
             display: none;
             z-index: 5;
+            line-height: 1.5; /* Line spacing for better readability */
         }
 
-        /* Arrow below the text */
+        /* Arrow pointing to the rose */
         #text-arrow {
             position: absolute;
             right: 85px; /* Centered over the rose */
-            bottom: 140px;
-            font-size: 40px;
+            bottom: 170px; /* Added space below the text */
+            font-size: 50px; /* Made the arrow larger for better visibility */
             color: #FF69B4;
             display: none;
             z-index: 5;
@@ -138,10 +139,13 @@
     <div id="fool-image"></div>
 
     <!-- Text above the big rose -->
-    <div id="rose-text">Click to take the rose</div>
+    <div id="rose-text">
+        Take this rose<br>
+        from your fool
+    </div>
 
-    <!-- Arrow below the text -->
-    <div id="text-arrow">⬇️</div>
+    <!-- Arrow pointing to the rose -->
+    <div id="text-arrow">⬇</div>
 
     <!-- Big rose with rainbow effect -->
     <div id="big-rose" onclick="redirectToProposal()">🌹</div>
