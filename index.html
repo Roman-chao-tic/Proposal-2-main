@@ -89,7 +89,7 @@
         #rose-text {
             position: absolute;
             right: 50px;
-            bottom: 150px;
+            bottom: 180px; /* Positioned higher above the rose */
             color: #272E5C;
             font-size: 1.2rem;
             text-align: center;
@@ -97,16 +97,36 @@
             z-index: 5;
         }
 
-        /* Heart-shaped arrow pointing towards the rose */
-        #heart-arrow {
+        /* Arrow below the text */
+        #text-arrow {
             position: absolute;
-            right: 130px;
-            bottom: 80px;
+            right: 85px; /* Centered over the rose */
+            bottom: 140px;
             font-size: 40px;
             color: #FF69B4;
-            transform: rotate(45deg); /* Angle the arrow to point at the rose */
             display: none;
             z-index: 5;
+        }
+
+        /* Nah button */
+        .no-btn {
+            padding: 12px 24px;
+            font-size: 18px;
+            cursor: pointer;
+            border: 2px solid #c0392b; /* Red border for the button */
+            background-color: #e74c3c; /* Red background */
+            color: #fff; /* White text */
+            margin-top: 40px; /* Space between the text and button */
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 3D effect shadow */
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Hover effect for the button */
+        .no-btn:hover {
+            background-color: #c0392b; /* Darker red on hover */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Enhance the 3D shadow */
+            transform: translateY(-2px); /* Lift the button up */
         }
     </style>
 </head>
@@ -120,8 +140,8 @@
     <!-- Text above the big rose -->
     <div id="rose-text">Click to take the rose</div>
 
-    <!-- Heart-shaped arrow -->
-    <div id="heart-arrow">💘</div>
+    <!-- Arrow below the text -->
+    <div id="text-arrow">⬇️</div>
 
     <!-- Big rose with rainbow effect -->
     <div id="big-rose" onclick="redirectToProposal()">🌹</div>
@@ -191,13 +211,10 @@
                 });
             }
 
-            // Show the big shining rose
-            const bigRose = document.getElementById('big-rose');
-            const roseText = document.getElementById('rose-text');
-            const heartArrow = document.getElementById('heart-arrow');
-            bigRose.style.display = 'block';
-            roseText.style.display = 'block';
-            heartArrow.style.display = 'block';
+            // Show the big shining rose, text, and arrow
+            document.getElementById('big-rose').style.display = 'block';
+            document.getElementById('rose-text').style.display = 'block';
+            document.getElementById('text-arrow').style.display = 'block';
         }
 
         function redirectToProposal() {
