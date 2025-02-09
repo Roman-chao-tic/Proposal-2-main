@@ -63,10 +63,10 @@
     <div class="text-container" id="text"></div>
     <button class="button" id="nahButton">Nah</button>
     <div class="image-container" id="imageContainer">
-        <p style='position: absolute; right: 20px; bottom: 100px;'>Take this rose</p>
-        <p style='position: absolute; right: 20px; bottom: 80px;'>from your fool</p>
-        <p style='position: absolute; right: 20px; bottom: 60px;'>&darr;</p>
-        <span class="glowing-emoji" id="rose" style='position: absolute; right: 20px; bottom: 40px;'>🌹</span>
+        <p style='text-align: center; margin-top: 20px;'>Take this rose</p>
+        <p style='text-align: center;'>from your fool</p>
+        <p style='text-align: center;'>&darr;</p>
+        <span class="glowing-emoji" id="rose" style='display: block; margin: 10px auto; text-align: center;'>🌹</span>
         <br>
         <img src="Fool.jpg" id="foolImage">
     </div>
@@ -116,6 +116,9 @@ document.getElementById("foolImage").style.opacity = "1";
 document.getElementById("foolImage").style.width = "500px";
                     imageContainer.style.display = "block";
 imageContainer.style.position = "absolute";
+imageContainer.style.top = "40%";
+imageContainer.style.left = "50%";
+imageContainer.style.transform = "translate(-50%, -50%)";
 imageContainer.style.right = "20px";
 imageContainer.style.bottom = "20px";
 imageContainer.style.position = "absolute";
