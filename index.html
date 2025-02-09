@@ -1,177 +1,113 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fool's Proposal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: 'Press Start 2P', cursive;
-            overflow: hidden;
-            text-align: left;
-            padding: 20px;
-        }
-        .text-container {
-            white-space: pre-line;
-        }
-        .button {
-            display: none;
-            background-color: red;
-            color: white;
-            font-size: 16px;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.1s;
-        }
-        .button:active {
-            transform: scale(0.9);
-        }
-        .image-container {
-            display: none;
-            text-align: center;
-            margin-top: 50px;
-        }
-        img {
-            width: 300px;
-            opacity: 0;
-            transition: opacity 2s ease-in;
-        }
-        .falling-roses {
+#falling-roses {
             position: absolute;
-            top: 0;
-            color: red;
-            font-size: 20px;
+            width: 100%;
+            height: 100%;
+            top: 20px; /* Adjusted to start falling from text area */
             pointer-events: none;
         }
-        .glowing-emoji {
-            font-size: 40px;
-            display: block;
+        
+        .rose {
+            position: absolute;
+            top: -100px;
+            animation: fall 4s linear infinite;
+        }
+        
+        @keyframes fall {
+            from { transform: translateY(-100px); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
+        }
+        
+        #final-text {
+            position: absolute;
+            bottom: 10%;
+            right: 5%;
+            text-align: right;
+        }
+        
+        .glow {
+            font-size: 30px;
             animation: glow 1s infinite alternate;
             cursor: pointer;
         }
+        
         @keyframes glow {
             from { text-shadow: 0 0 5px red; }
-            to { text-shadow: 0 0 20px red; }
+            to { text-shadow: 0 0 15px red; }
         }
     </style>
 </head>
 <body>
-    <div class="text-container" id="text"></div>
-    <button class="button" id="nahButton">Nah</button>
-    <div class="image-container" id="imageContainer">
-        <p style='position: absolute; left: 20px; bottom: 100px;'>Take this rose</p>
-        <p style='position: absolute; left: 20px; bottom: 80px;'>from your fool</p>
-        <p style='position: absolute; left: 20px; bottom: 60px;'>&darr;</p>
-        <span class="glowing-emoji" id="rose" style='position: absolute; left: 20px; bottom: 40px;'>🌹</span>
-        <br>
-        <img src="Fool.jpg" id="foolImage">
+    <div id="text-container"></div>
+    <button id="nah-btn" style="display: none;">Nah</button>
+    <div id="image-container">
+        <img id="fool-img" src="Fool.jpg" alt="Fool" width="500">
     </div>
-    <audio id="audio" src="prop2.mp3"></audio>
+    <div id="falling-roses"></div>
+    <div id="final-text" style="display: none;">
+        <p>Take this rose</p>
+        <p>from your fool</p>
+        <p>&darr;</p>
+        <p class="glow" onclick="window.location.href='https://roman-chao-tic.github.io/Proposal-3/';">🌹</p>
+    </div>
+    
+    <audio id="prop2" loop>
+        <source src="prop2.mp3" type="audio/mp3">
+    </audio>
+    
     <script>
-        const textArray = [
-            "Gandu ta toke flowers dilo??",
-            "Jantammm!!!!!! What a f*cking incompetent",
-            "Well, anyways ei ne phul from your fool"
-        ];
-        const textContainer = document.getElementById("text");
-        const button = document.getElementById("nahButton");
-        const imageContainer = document.getElementById("imageContainer");
-        const rose = document.getElementById("rose");
-        const audio = document.getElementById("audio");
-        let index = 0;
+        const textContainer = document.getElementById('text-container');
+        const nahBtn = document.getElementById('nah-btn');
+        const imageContainer = document.getElementById('image-container');
+        const finalText = document.getElementById('final-text');
+        const audio = document.getElementById('prop2');
 
-        function typeText(text, callback) {
-            let i = 0;
-            function typing() {
-                if (i < text.length) {
-                    textContainer.innerHTML += text[i];
+        function typeText(text, speed = 100) {
+            return new Promise(resolve => {
+                let i = 0;
+                const interval = setInterval(() => {
+                    textContainer.innerHTML = `<span class='typing'>${text.slice(0, i)}</span>`;
                     i++;
-                    setTimeout(typing, 150);
-                } else {
-                    if (callback) callback();
-                }
-            }
-            typing();
-        }
-        
-        typeText(textArray[0], () => {
-            button.style.display = "inline-block";
-button.style.marginTop = "10px";
-button.style.marginLeft = "20px";
-button.style.marginLeft = "20px";
-        });
-        
-        button.addEventListener("click", () => {
-            button.style.display = "none";
-            textContainer.innerHTML += "\n";
-            typeText(textArray[1], () => {
-                textContainer.innerHTML += "\n";
-                typeText(textArray[2], () => {
-                    document.getElementById("foolImage").style.transition = "opacity 6s ease-in";
-document.getElementById("foolImage").style.opacity = "1";
-document.getElementById("foolImage").style.width = "500px";
-                    imageContainer.style.display = "block"; // Displays the image container after text is typed out
-imageContainer.style.position = "absolute"; // Positions the image container absolutely on the page
-imageContainer.style.top = "auto"; // Adjusts the vertical positioning of the image
-imageContainer.style.marginTop = "20px"; // Reduces space between text and image // Adds some space between the first text and the image
-imageContainer.style.left = "25%"; // Aligns the image to the center-left // Centers the image container horizontally
-imageContainer.style.transform = "translate(-50%, -50%)"; // Ensures the image is perfectly centered // Ensures the image container is perfectly centered
-imageContainer.style.right = "20px";
-imageContainer.style.bottom = "20px";
-imageContainer.style.position = "absolute";
-imageContainer.style.right = "20px";
-imageContainer.style.bottom = "20px";
-imageContainer.style.left = "50%"; // Centers the image horizontally // Aligns the image to the left
-imageContainer.style.top = "40%"; // Moves the image higher
-imageContainer.style.transform = "translate(-50%, -50%)";
-imageContainer.style.right = "20px";
-imageContainer.style.bottom = "20px";
-                    createFallingRoses();
-                    audio.volume = 0;
-                    audio.loop = true;
-audio.play();
-                    fadeInAudio(audio);
-                });
+                    if (i > text.length) {
+                        clearInterval(interval);
+                        textContainer.innerHTML = text;
+                        resolve();
+                    }
+                }, speed);
             });
-        });
-
-        function createFallingRoses() {
-            for (let i = 0; i < 20; i++) {
-                let rose = document.createElement("div");
-                rose.className = "falling-roses";
-                rose.innerHTML = "🌹";
-                rose.style.left = Math.random() * window.innerWidth + "px";
-                document.body.appendChild(rose);
-                let duration = Math.random() * 5 + 3;
-                rose.animate([
-                    { transform: `translateY(-50px)`, opacity: 1 },
-                    { transform: `translateY(${window.innerHeight}px)`, opacity: 0 }
-                ], {
-                    duration: duration * 1000,
-                    iterations: Infinity
-                });
-            }
-        }
-
-        function fadeInAudio(audio) {
-            let volume = 0;
-            let interval = setInterval(() => {
-                if (volume < 1) {
-                    volume += 0.05;
-                    audio.volume = volume;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 200);
         }
         
-        rose.addEventListener("click", () => {
-            window.location.href = "https://roman-chao-tic.github.io/Proposal-3/";
+        async function startSequence() {
+            await typeText("Gandu ta toke flowers dilo??", 100);
+            nahBtn.style.display = 'inline-block';
+        }
+        
+        nahBtn.addEventListener('click', async () => {
+            nahBtn.style.display = 'none';
+            await typeText("Jantammm!!!!!! What a f*cking incompetent.", 100);
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Delay before next text
+            await typeText("Well, anyways ei ne phul from your fool", 100);
+            setTimeout(() => {
+                imageContainer.style.opacity = 1;
+                finalText.style.display = 'block';
+                audio.play();
+                startFallingRoses();
+            }, 2000);
         });
+        
+        function startFallingRoses() {
+            for (let i = 0; i < 20; i++) {
+                let rose = document.createElement('div');
+                rose.innerHTML = '🌹';
+                rose.classList.add('rose');
+                rose.style.left = Math.random() * window.innerWidth + 'px';
+                rose.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.getElementById('falling-roses').appendChild(rose);
+                setTimeout(() => rose.remove(), 5000);
+            }
+            setTimeout(startFallingRoses, 1000);
+        }
+        
+        startSequence();
     </script>
 </body>
 </html>
