@@ -1,19 +1,66 @@
-#falling-roses {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Press Start Typing</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Press Start 2P', cursive;
+            overflow: hidden;
+        }
+        
+        #text-container {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 18px;
+        }
+        
+        #nah-btn {
+            position: absolute;
+            left: 280px;
+            top: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-family: 'Press Start 2P', cursive;
+            cursor: pointer;
+        }
+        
+        #nah-btn:active {
+            transform: scale(0.9);
+        }
+        
+        #image-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+        
+        #falling-roses {
             position: absolute;
             width: 100%;
             height: 100%;
-            top: 20px; /* Adjusted to start falling from text area */
             pointer-events: none;
         }
         
         .rose {
             position: absolute;
-            top: -100px;
+            font-size: 24px;
             animation: fall 4s linear infinite;
         }
         
         @keyframes fall {
-            from { transform: translateY(-100px); opacity: 1; }
+            from { transform: translateY(0); opacity: 1; }
             to { transform: translateY(100vh); opacity: 0; }
         }
         
@@ -40,7 +87,7 @@
     <div id="text-container"></div>
     <button id="nah-btn" style="display: none;">Nah</button>
     <div id="image-container">
-        <img id="fool-img" src="Fool.jpg" alt="Fool" width="500">
+        <img id="fool-img" src="Fool.jpg" alt="Fool" width="600">
     </div>
     <div id="falling-roses"></div>
     <div id="final-text" style="display: none;">
@@ -100,6 +147,7 @@
                 rose.innerHTML = '🌹';
                 rose.classList.add('rose');
                 rose.style.left = Math.random() * window.innerWidth + 'px';
+                rose.style.top = textContainer.offsetTop + 'px'; // Set roses to fall from text position
                 rose.style.animationDuration = (Math.random() * 3 + 2) + 's';
                 document.getElementById('falling-roses').appendChild(rose);
                 setTimeout(() => rose.remove(), 5000);
