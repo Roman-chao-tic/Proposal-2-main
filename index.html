@@ -13,31 +13,27 @@
             background: #000;
             color: #fff;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
             text-align: center;
         }
         #typing-container {
-            max-width: 90%;
+            position: relative;
+            z-index: 3;
+            margin-top: 50px;
             font-size: 1rem;
             padding: 20px;
             color: #fff;
+            max-width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         #fool-image {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 500px;
+            width: 250px;
             height: auto;
-            background: url('Fool.jpg') no-repeat center center/contain;
             opacity: 0;
-            z-index: 2;
-            transition: opacity 1s ease;
+            transition: opacity 2s ease-in-out;
+            margin-top: 20px;
+            display: block;
         }
         .rose {
             position: absolute;
@@ -53,9 +49,8 @@
         }
         #big-rose {
             position: absolute;
-            bottom: 15%;
-            left: 50%;
-            transform: translateX(-50%);
+            right: 50px;
+            bottom: 50px;
             font-size: 80px;
             cursor: pointer;
             z-index: 5;
@@ -72,21 +67,18 @@
         }
         #rose-text {
             position: absolute;
-            bottom: 30%;
-            left: 50%;
-            transform: translateX(-50%);
+            right: 50px;
+            bottom: 250px;
             color: #272E5C;
             font-size: 1.2rem;
             text-align: center;
             display: none;
             z-index: 5;
-            line-height: 1.5;
         }
         #text-arrow {
             position: absolute;
-            bottom: 20%;
-            left: 50%;
-            transform: translateX(-50%);
+            right: 85px;
+            bottom: 170px;
             font-size: 50px;
             color: #FF69B4;
             display: none;
@@ -99,7 +91,7 @@
             border: 2px solid #c0392b;
             background-color: #e74c3c;
             color: #fff;
-            margin-top: 20px;
+            margin-top: 40px;
             border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             transition: all 0.2s ease-in-out;
@@ -113,7 +105,7 @@
 </head>
 <body>
     <div id="typing-container"></div>
-    <div id="fool-image"></div>
+    <img id="fool-image" src="Fool.jpg" alt="Fool Image">
     <div id="rose-text">Take this rose<br>from your fool</div>
     <div id="text-arrow">⬇</div>
     <div id="big-rose" onclick="redirectToProposal()">🌹</div>
@@ -140,9 +132,7 @@
             button.onclick = () => {
                 button.remove();
                 typeText(container, "Jantammm!!!!!! What a f*cking incompetent😔", () => {
-                    setTimeout(() => {
-                        typeText(container, "Well, anyways ei ne phul from your fool", showRoseAnimation);
-                    }, 1000);
+                    showFoolImageAndAudio();
                 });
             };
             container.appendChild(button);
@@ -163,15 +153,23 @@
             }, 100);
         }
 
-        function showRoseAnimation() {
-            document.body.style.background = "#fff";
-            document.getElementById('typing-container').style.color = "#272E5C";
+        function showFoolImageAndAudio() {
             const foolImage = document.getElementById('fool-image');
             foolImage.style.opacity = 1;
 
+            // Play and fade in audio at the same time
             const audio = document.getElementById('background-audio');
-            audio.volume = 0;
+            audio.volume = 0;  
             audio.play().then(() => fadeInAudio(audio)).catch(err => console.log("Autoplay blocked:", err));
+
+            setTimeout(() => {
+                typeText(document.getElementById('typing-container'), "Well, anyways ei ne phul from your fool", showRoseAnimation);
+            }, 2000);
+        }
+
+        function showRoseAnimation() {
+            document.body.style.background = "#fff";
+            document.getElementById('typing-container').style.color = "#272E5C";
 
             for (let i = 0; i < 50; i++) {
                 const rose = document.createElement('div');
