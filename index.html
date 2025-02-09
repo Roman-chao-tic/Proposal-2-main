@@ -63,10 +63,10 @@
     <div class="text-container" id="text"></div>
     <button class="button" id="nahButton">Nah</button>
     <div class="image-container" id="imageContainer">
-        <p style='text-align: right; margin-top: 20px;'>Take this rose</p>
-        <p style='text-align: right;'>from your fool</p>
-        <p style='text-align: right;'>&darr;</p>
-        <span class="glowing-emoji" id="rose" style='display: block; margin: 10px 0 0 auto; text-align: right;'>🌹</span>
+        <p style='position: absolute; left: 20px; bottom: 100px;'>Take this rose</p>
+        <p style='position: absolute; left: 20px; bottom: 80px;'>from your fool</p>
+        <p style='position: absolute; left: 20px; bottom: 60px;'>&darr;</p>
+        <span class="glowing-emoji" id="rose" style='position: absolute; left: 20px; bottom: 40px;'>🌹</span>
         <br>
         <img src="Fool.jpg" id="foolImage">
     </div>
@@ -119,13 +119,13 @@ imageContainer.style.position = "absolute"; // Positions the image container abs
 imageContainer.style.top = "auto"; // Adjusts the vertical positioning of the image
 imageContainer.style.marginTop = "20px"; // Reduces space between text and image // Adds some space between the first text and the image
 imageContainer.style.left = "25%"; // Aligns the image to the center-left // Centers the image container horizontally
-imageContainer.style.transform = "translate(-50%, -50%)"; // Ensures the image container is perfectly centered
+imageContainer.style.transform = "translate(-50%, -50%)"; // Ensures the image is perfectly centered // Ensures the image container is perfectly centered
 imageContainer.style.right = "20px";
 imageContainer.style.bottom = "20px";
 imageContainer.style.position = "absolute";
 imageContainer.style.right = "20px";
 imageContainer.style.bottom = "20px";
-imageContainer.style.left = "10%"; // Aligns the image to the left
+imageContainer.style.left = "50%"; // Centers the image horizontally // Aligns the image to the left
 imageContainer.style.top = "40%"; // Moves the image higher
 imageContainer.style.transform = "translate(-50%, -50%)";
 imageContainer.style.right = "20px";
