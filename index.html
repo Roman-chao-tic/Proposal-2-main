@@ -28,11 +28,11 @@
             align-items: center;
         }
         #fool-image {
-            width: 250px;
+            width: 300px;  /* Bigger Image */
             height: auto;
             opacity: 0;
             transition: opacity 2s ease-in-out;
-            margin-top: 20px;
+            margin-top: 20px; /* Ensures spacing below first text */
             display: block;
         }
         .rose {
@@ -157,9 +157,9 @@
             const foolImage = document.getElementById('fool-image');
             foolImage.style.opacity = 1;
 
-            // Play and fade in audio at the same time
+            // Play & Fade-In Audio
             const audio = document.getElementById('background-audio');
-            audio.volume = 0;  
+            audio.volume = 0;
             audio.play().then(() => fadeInAudio(audio)).catch(err => console.log("Autoplay blocked:", err));
 
             setTimeout(() => {
@@ -191,12 +191,12 @@
             let volume = 0;
             const fadeInterval = setInterval(() => {
                 if (volume < 1) {
-                    volume += 0.1;
+                    volume += 0.05;
                     audio.volume = volume;
                 } else {
                     clearInterval(fadeInterval);
                 }
-            }, 200);
+            }, 150);
         }
 
         function redirectToProposal() {
