@@ -28,7 +28,7 @@
             align-items: center;
         }
         #fool-image {
-            width: 350px;  /* Bigger Image */
+            width: 300px;  /* Bigger Image */
             height: auto;
             opacity: 0;
             transition: opacity 2s ease-in-out;
@@ -101,25 +101,6 @@
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
             transform: translateY(-2px);
         }
-        /* Unmute Button */
-        #unmute-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 12px 24px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            background-color: #3498db;
-            color: white;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            transition: all 0.2s ease-in-out;
-            z-index: 10;
-        }
-        #unmute-btn:hover {
-            background-color: #2980b9;
-        }
     </style>
 </head>
 <body>
@@ -129,16 +110,12 @@
     <div id="text-arrow">⬇</div>
     <div id="big-rose" onclick="redirectToProposal()">🌹</div>
 
-    <button id="unmute-btn" onclick="toggleAudio()">🔇 Unmute</button>
-
     <audio id="background-audio" loop>
         <source src="prop2.mp3" type="audio/mpeg">
         <source src="prop2.ogg" type="audio/ogg">
     </audio>
 
     <script>
-        let audioPlaying = false;
-
         window.onload = () => {
             const typingContainer = document.getElementById('typing-container');
             typingContainer.style.display = 'block';
@@ -155,7 +132,7 @@
             button.onclick = () => {
                 button.remove();
                 typeText(container, "Jantammm!!!!!! What a f*cking incompetent😔", () => {
-                    showFoolImage();
+                    showFoolImageAndAudio();
                 });
             };
             container.appendChild(button);
@@ -176,9 +153,14 @@
             }, 100);
         }
 
-        function showFoolImage() {
+        function showFoolImageAndAudio() {
             const foolImage = document.getElementById('fool-image');
             foolImage.style.opacity = 1;
+
+            // Play & Fade-In Audio
+            const audio = document.getElementById('background-audio');
+            audio.volume = 0;
+            audio.play().then(() => fadeInAudio(audio)).catch(err => console.log("Autoplay blocked:", err));
 
             setTimeout(() => {
                 typeText(document.getElementById('typing-container'), "Well, anyways ei ne phul from your fool", showRoseAnimation);
@@ -205,18 +187,16 @@
             document.getElementById('text-arrow').style.display = 'block';
         }
 
-        function toggleAudio() {
-            const audio = document.getElementById('background-audio');
-            const unmuteBtn = document.getElementById('unmute-btn');
-
-            if (!audioPlaying) {
-                audio.play();
-                unmuteBtn.textContent = "🔊 Mute";
-            } else {
-                audio.pause();
-                unmuteBtn.textContent = "🔇 Unmute";
-            }
-            audioPlaying = !audioPlaying;
+        function fadeInAudio(audio) {
+            let volume = 0;
+            const fadeInterval = setInterval(() => {
+                if (volume < 1) {
+                    volume += 0.05;
+                    audio.volume = volume;
+                } else {
+                    clearInterval(fadeInterval);
+                }
+            }, 150);
         }
 
         function redirectToProposal() {
