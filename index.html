@@ -90,7 +90,7 @@
                 if (i < text.length) {
                     textContainer.innerHTML += text[i];
                     i++;
-                    setTimeout(typing, 50);
+                    setTimeout(typing, 150);
                 } else {
                     if (callback) callback();
                 }
@@ -100,6 +100,9 @@
         
         typeText(textArray[0], () => {
             button.style.display = "inline-block";
+button.style.marginTop = "10px";
+button.style.marginLeft = "20px";
+button.style.marginLeft = "20px";
         });
         
         button.addEventListener("click", () => {
@@ -108,11 +111,22 @@
             typeText(textArray[1], () => {
                 textContainer.innerHTML += "\n";
                 typeText(textArray[2], () => {
-                    document.getElementById("foolImage").style.opacity = "1";
+                    document.getElementById("foolImage").style.transition = "opacity 6s ease-in";
+document.getElementById("foolImage").style.opacity = "1";
+document.getElementById("foolImage").style.width = "500px";
                     imageContainer.style.display = "block";
+imageContainer.style.position = "absolute";
+imageContainer.style.right = "20px";
+imageContainer.style.bottom = "20px";
+imageContainer.style.left = "50%";
+imageContainer.style.top = "50%";
+imageContainer.style.transform = "translate(-50%, -50%)";
+imageContainer.style.right = "20px";
+imageContainer.style.bottom = "20px";
                     createFallingRoses();
                     audio.volume = 0;
-                    audio.play();
+                    audio.loop = true;
+audio.play();
                     fadeInAudio(audio);
                 });
             });
