@@ -13,26 +13,27 @@
             background: #000;
             color: #fff;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
         }
         #typing-container {
-            position: relative;
-            z-index: 3;
-            top: 50px;
-            left: 50px;
-            text-align: left;
+            max-width: 90%;
             font-size: 1rem;
             padding: 20px;
             color: #fff;
-            width: auto;
-            max-width: 90%;
-            overflow: hidden;
         }
         #fool-image {
             position: absolute;
             top: 0;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 100%;
-            height: 100%;
+            max-width: 500px;
+            height: auto;
             background: url('Fool.jpg') no-repeat center center/contain;
             opacity: 0;
             z-index: 2;
@@ -52,8 +53,9 @@
         }
         #big-rose {
             position: absolute;
-            right: 50px;
-            bottom: 50px;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 80px;
             cursor: pointer;
             z-index: 5;
@@ -70,8 +72,9 @@
         }
         #rose-text {
             position: absolute;
-            right: 50px;
-            bottom: 250px;
+            bottom: 30%;
+            left: 50%;
+            transform: translateX(-50%);
             color: #272E5C;
             font-size: 1.2rem;
             text-align: center;
@@ -81,8 +84,9 @@
         }
         #text-arrow {
             position: absolute;
-            right: 85px;
-            bottom: 170px;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 50px;
             color: #FF69B4;
             display: none;
@@ -95,7 +99,7 @@
             border: 2px solid #c0392b;
             background-color: #e74c3c;
             color: #fff;
-            margin-top: 40px;
+            margin-top: 20px;
             border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             transition: all 0.2s ease-in-out;
@@ -165,7 +169,6 @@
             const foolImage = document.getElementById('fool-image');
             foolImage.style.opacity = 1;
 
-            // Play audio after interaction (works on mobile)
             const audio = document.getElementById('background-audio');
             audio.volume = 0;
             audio.play().then(() => fadeInAudio(audio)).catch(err => console.log("Autoplay blocked:", err));
