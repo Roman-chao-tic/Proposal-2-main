@@ -171,9 +171,9 @@
             await new Promise(resolve => setTimeout(resolve, 1000)); // Delay before next text
             await typeText("Well, anyways ei ne phul from your fool", 100);
             setTimeout(() => {
+                audio.play().catch(e => console.log("Audio play prevented"));
                 imageContainer.style.opacity = 1;
                 finalText.style.display = 'block';
-                audio.play().catch(e => console.log("Audio play prevented"));
                 startFallingRoses();
             }, 2000);
         });
