@@ -170,10 +170,12 @@
             await typeText("Jantammm!!!!!! What a f*cking incompetent.", 100);
             await new Promise(resolve => setTimeout(resolve, 1000)); // Delay before next text
             await typeText("Well, anyways ei ne phul from your fool", 100);
+            // Play audio first (may require user interaction on some browsers)
+            audio.play().catch(e => console.log("Autoplay prevented"));
             setTimeout(() => {
                 imageContainer.style.opacity = 1;
                 finalText.style.display = 'block';
-                audio.play();
+                audio.play().catch(e => console.log("Audio already playing"));
                 startFallingRoses();
             }, 2000);
         });
@@ -200,6 +202,11 @@
             audioControls.textContent = isMuted ? '🔇 Unmute' : '🔊 Mute';
         });
 
+        // Initialize audio with muted state to satisfy autoplay policies
+        audio.muted = true;
+        audio.play().catch(e => console.log("Initial autoplay prevented"));
+        audio.muted = false;
+        
         startSequence();
     </script>
 </body>
